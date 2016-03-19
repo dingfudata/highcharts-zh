@@ -686,7 +686,7 @@
         if (!defined(timestamp) || isNaN(timestamp)) {
             return defaultOptions.lang.invalidDate || '';
         }
-        format = pick(format, '%Y-%m-%d %H:%M:%S');
+        format = pick(format, '%Y年-%m-%d %H:%M:%S');
 
         var date = new Date(timestamp - getTZOffset(timestamp)),
             key, // used in for constuct below
@@ -1707,7 +1707,7 @@
                 //tooltip: {
                     //pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y}</b>'
                     //valueDecimals: null,
-                    //xDateFormat: '%Y  %b %e %A',
+                    //xDateFormat: '%Y年  %b %e %A',
                     //valuePrefix: '',
                     //ySuffix: ''
                 //}
@@ -1809,10 +1809,10 @@
                 second: '%b %e %A, %H:%M:%S',
                 minute: '%b %e %A, %H:%M',
                 hour: '%b %e %A, %H:%M',
-                day: '%Y  %b %e %A',
-                week: '周统计起始于 %Y  %b %e %A',
-                month: '%B %Y',
-                year: '%Y'
+                day: '%Y年  %b %e %A',
+                week: '周统计起始于 %Y年  %b %e %A',
+                month: '%Y年 %B',
+                year: '%Y年'
             },
             footerFormat: '',
             //formatter: defaultFormatter,
@@ -1830,7 +1830,7 @@
                 pointerEvents: 'none', // #1686 http://caniuse.com/#feat=pointer-events
                 whiteSpace: 'nowrap'
             }
-            //xDateFormat: '%Y  %b %e %A',
+            //xDateFormat: '%Y年  %b %e %A',
             //valueDecimals: null,
             //valuePrefix: '',
             //valueSuffix: ''
@@ -6909,8 +6909,8 @@
                 hour: '%H:%M',
                 day: '%b %e',
                 week: '%b %e',
-                month: '%y %b',
-                year: '%Y'
+                month: '%Y年 %b',
+                year: '%Y年'
             },
             endOnTick: false,
             gridLineColor: '#D8D8D8',
@@ -20451,10 +20451,10 @@
                 second: ['%b %e %A, %H:%M:%S', '%b %e %A, %H:%M:%S', '-%H:%M:%S'],
                 minute: ['%b %e %A, %H:%M', '%b %e %A, %H:%M', '-%H:%M'],
                 hour: ['%b %e %A, %H:%M', '%b %e %A, %H:%M', '-%H:%M'],
-                day: ['%Y  %b %e %A', '%b %e %A', '-%Y  %b %e %A'],
-                week: ['周统计起始于 %Y  %b %e %A', '%b %e %A', '-%Y  %b %e %A'],
-                month: ['%B %Y', '%B', '-%B %Y'],
-                year: ['%Y', '%Y', '-%Y']
+                day: ['%Y年  %b %e %A', '%b %e %A', '-%Y年  %b %e %A'],
+                week: ['周统计起始于 %Y年  %b %e %A', '%b %e %A', '-%Y年  %b %e %A'],
+                month: ['%Y年 %B', '%B', '-%Y年 %B'],
+                year: ['%Y年', '%Y年', '-%Y年']
             }
             // smoothed = false, // enable this for navigator series only
         },
@@ -22871,8 +22871,8 @@
             inputPosition: {
                 align: 'right'
             },
-            // inputDateFormat: '%b %e, %Y',
-            // inputEditDateFormat: '%Y-%m-%d',
+            // inputDateFormat: '%b %e, %Y年',
+            // inputEditDateFormat: '%Y年-%m-%d',
             // inputEnabled: true,
             // inputStyle: {},
             labelStyle: {
@@ -23167,7 +23167,7 @@
                     isAllButAlreadyShowingAll = rangeOptions.type === 'all' && baseAxis.max - baseAxis.min >= dataMax - dataMin &&
                         buttons[i].state !== 2,
                     // Disable the YTD button if the complete range is within the same year
-                    isYTDButNotAvailable = rangeOptions.type === 'ytd' && dateFormat('%Y', dataMin) === dateFormat('%Y', dataMax),
+                    isYTDButNotAvailable = rangeOptions.type === 'ytd' && dateFormat('%Y年', dataMin) === dateFormat('%Y年', dataMax),
                     // Set a button on export
                     isSelectedForExport = chart.renderer.forExport && i === selected,
 
@@ -23235,11 +23235,11 @@
             }
 
             this[name + 'Input'].value = dateFormat(
-                options.inputEditDateFormat || '%Y-%m-%d',
+                options.inputEditDateFormat || '%Y年-%m-%d',
                 this[name + 'Input'].HCTime
             );
             this[name + 'DateBox'].attr({
-                text: dateFormat(options.inputDateFormat || ' %Y %b %e', this[name + 'Input'].HCTime)
+                text: dateFormat(options.inputDateFormat || ' %Y年 %b %e', this[name + 'Input'].HCTime)
             });
         },
 
@@ -24117,7 +24117,7 @@
 
         if (!formatOption && !options.formatter) {
             if (this.isDatetimeAxis) {
-                formatFormat = '%Y %b %d';
+                formatFormat = '%Y年 %b %d';
             }
             formatOption = '{value' + (formatFormat ? ':' + formatFormat : '') + '}';
         }
